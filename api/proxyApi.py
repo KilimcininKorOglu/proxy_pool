@@ -9,9 +9,9 @@
 -------------------------------------------------
    Change Activity:
                    2016/12/04: WebApi
-                   2019/08/14: 集成Gunicorn启动方式
-                   2020/06/23: 新增pop接口
-                   2022/07/21: 更新count接口
+                   2019/08/14: Integrated Gunicorn startup
+                   2020/06/23: Added pop endpoint
+                   2022/07/21: Updated count endpoint
 -------------------------------------------------
 """
 __author__ = 'JHao'
@@ -72,7 +72,7 @@ def pop():
 
 @app.route('/refresh/')
 def refresh():
-    # TODO refresh会有守护程序定时执行，由api直接调用性能较差，暂不使用
+    # TODO refresh is executed periodically by daemon, direct API call has poor performance, not used for now
     return 'success'
 
 

@@ -1,5 +1,5 @@
 
-ProxyPool 爬虫代理IP池
+ProxyPool - Crawler Proxy IP Pool
 =======
 [![Build Status](https://travis-ci.org/jhao104/proxy_pool.svg?branch=master)](https://travis-ci.org/jhao104/proxy_pool)
 [![](https://img.shields.io/badge/Powered%20by-@j_hao104-green.svg)](http://www.spiderpy.cn/blog/)
@@ -18,11 +18,11 @@ ProxyPool 爬虫代理IP池
 
 ### ProxyPool
 
-爬虫代理IP池项目,主要功能为定时采集网上发布的免费代理验证入库，定时验证入库的代理保证代理的可用性，提供API和CLI两种使用方式。同时你也可以扩展代理源以增加代理池IP的质量和数量。
+A crawler proxy IP pool project. Main features include scheduled fetching of free proxies published online, validating and storing them, and periodically validating stored proxies to ensure availability. Provides both API and CLI usage methods. You can also extend proxy sources to increase the quality and quantity of proxy pool IPs.
 
-* 文档: [document](https://proxy-pool.readthedocs.io/zh/latest/) [![Documentation Status](https://readthedocs.org/projects/proxy-pool/badge/?version=latest)](https://proxy-pool.readthedocs.io/zh/latest/?badge=latest)
+* Documentation: [document](https://proxy-pool.readthedocs.io/zh/latest/) [![Documentation Status](https://readthedocs.org/projects/proxy-pool/badge/?version=latest)](https://proxy-pool.readthedocs.io/zh/latest/?badge=latest)
 
-* 支持版本: [![](https://img.shields.io/badge/Python-2.7-green.svg)](https://docs.python.org/2.7/)
+* Supported versions: [![](https://img.shields.io/badge/Python-2.7-green.svg)](https://docs.python.org/2.7/)
 [![](https://img.shields.io/badge/Python-3.5-blue.svg)](https://docs.python.org/3.5/)
 [![](https://img.shields.io/badge/Python-3.6-blue.svg)](https://docs.python.org/3.6/)
 [![](https://img.shields.io/badge/Python-3.7-blue.svg)](https://docs.python.org/3.7/)
@@ -31,14 +31,14 @@ ProxyPool 爬虫代理IP池
 [![](https://img.shields.io/badge/Python-3.10-blue.svg)](https://docs.python.org/3.10/)
 [![](https://img.shields.io/badge/Python-3.11-blue.svg)](https://docs.python.org/3.11/)
 
-* 测试地址: http://demo.spiderpy.cn (勿压谢谢)
+* Demo address: http://demo.spiderpy.cn (please don't stress test)
 
-* 付费代理推荐: [luminati-china](https://get.brightdata.com/github_jh). 国外的亮数据BrightData（以前叫luminati）被认为是代理市场领导者，覆盖全球的7200万IP，大部分是真人住宅IP，成功率扛扛的。付费套餐多种，需要高质量代理IP的可以注册后联系中文客服。[申请免费试用](https://get.brightdata.com/github_jh) 目前有50%折扣优惠活动。(PS:用不明白的同学可以参考这个[使用教程](https://www.cnblogs.com/jhao/p/15611785.html))。
+* Paid proxy recommendation: [luminati-china](https://get.brightdata.com/github_jh). BrightData (formerly luminati) is considered the proxy market leader, covering 72 million IPs worldwide, mostly real residential IPs with high success rates. Multiple paid plans available. [Apply for free trial](https://get.brightdata.com/github_jh) - currently 50% discount available. (PS: refer to this [tutorial](https://www.cnblogs.com/jhao/p/15611785.html) if needed).
 
 
-### 运行项目
+### Running the Project
 
-##### 下载代码:
+##### Download code:
 
 * git clone
 
@@ -49,51 +49,51 @@ git clone git@github.com:jhao104/proxy_pool.git
 * releases
 
 ```bash
-https://github.com/jhao104/proxy_pool/releases 下载对应zip文件
+https://github.com/jhao104/proxy_pool/releases download the corresponding zip file
 ```
 
-##### 安装依赖:
+##### Install dependencies:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-##### 更新配置:
+##### Update configuration:
 
 
 ```python
-# setting.py 为项目配置文件
+# setting.py is the project configuration file
 
-# 配置API服务
+# Configure API service
 
 HOST = "0.0.0.0"               # IP
-PORT = 5000                    # 监听端口
+PORT = 5000                    # Listen port
 
 
-# 配置数据库
+# Configure database
 
 DB_CONN = 'redis://:pwd@127.0.0.1:8888/0'
 
 
-# 配置 ProxyFetcher
+# Configure ProxyFetcher
 
 PROXY_FETCHER = [
-    "freeProxy01",      # 这里是启用的代理抓取方法名，所有fetch方法位于fetcher/proxyFetcher.py
+    "freeProxy01",      # These are enabled proxy fetch method names, all fetch methods are in fetcher/proxyFetcher.py
     "freeProxy02",
     # ....
 ]
 ```
 
-#### 启动项目:
+#### Start project:
 
 ```bash
-# 如果已经具备运行条件, 可用通过proxyPool.py启动。
-# 程序分为: schedule 调度程序 和 server Api服务
+# If runtime conditions are met, you can start via proxyPool.py
+# Program consists of: schedule scheduler and server API service
 
-# 启动调度程序
+# Start scheduler
 python proxyPool.py schedule
 
-# 启动webApi服务
+# Start webApi service
 python proxyPool.py server
 
 ```
@@ -107,30 +107,30 @@ docker run --env DB_CONN=redis://:password@ip:port/0 -p 5010:5010 jhao104/proxy_
 ```
 ### docker-compose
 
-项目目录下运行: 
+Run in project directory: 
 ``` bash
 docker-compose up -d
 ```
 
-### 使用
+### Usage
 
 * Api
 
-启动web服务后, 默认配置下会开启 http://127.0.0.1:5010 的api接口服务:
+After starting the web service, the default configuration will enable the API interface service at http://127.0.0.1:5010:
 
-| api | method | Description | params|
-| ----| ---- | ---- | ----|
-| / | GET | api介绍 | None |
-| /get | GET | 随机获取一个代理| 可选参数: `?type=https` 过滤支持https的代理|
-| /pop | GET | 获取并删除一个代理| 可选参数: `?type=https` 过滤支持https的代理|
-| /all | GET | 获取所有代理 |可选参数: `?type=https` 过滤支持https的代理|
-| /count | GET | 查看代理数量 |None|
-| /delete | GET | 删除代理  |`?proxy=host:ip`|
+| api     | method | Description          | params                                                    |
+|---------|--------|----------------------|-----------------------------------------------------------|
+| /       | GET    | API introduction     | None                                                      |
+| /get    | GET    | Get a random proxy   | Optional: `?type=https` filter https-supporting proxies   |
+| /pop    | GET    | Get and delete proxy | Optional: `?type=https` filter https-supporting proxies   |
+| /all    | GET    | Get all proxies      | Optional: `?type=https` filter https-supporting proxies   |
+| /count  | GET    | View proxy count     | None                                                      |
+| /delete | GET    | Delete proxy         | `?proxy=host:ip`                                          |
 
 
-* 爬虫使用
+* Crawler usage
 
-　　如果要在爬虫代码中使用的话， 可以将此api封装成函数直接使用，例如：
+If you want to use it in crawler code, you can wrap this API into functions for direct use, for example:
 
 ```python
 import requests
@@ -150,92 +150,92 @@ def getHtml():
     while retry_count > 0:
         try:
             html = requests.get('http://www.example.com', proxies={"http": "http://{}".format(proxy)})
-            # 使用代理访问
+            # Access using proxy
             return html
         except Exception:
             retry_count -= 1
-    # 删除代理池中代理
+    # Delete proxy from pool
     delete_proxy(proxy)
     return None
 ```
 
-### 扩展代理
+### Extend Proxies
 
-　　项目默认包含几个免费的代理获取源，但是免费的毕竟质量有限，所以如果直接运行可能拿到的代理质量不理想。所以，提供了代理获取的扩展方法。
+The project includes several free proxy sources by default, but free sources have limited quality, so running directly may result in poor proxy quality. Therefore, extension methods for proxy fetching are provided.
 
-　　添加一个新的代理源方法如下:
+To add a new proxy source method:
 
-* 1、首先在[ProxyFetcher](https://github.com/jhao104/proxy_pool/blob/1a3666283806a22ef287fba1a8efab7b94e94bac/fetcher/proxyFetcher.py#L21)类中添加自定义的获取代理的静态方法，
-该方法需要以生成器(yield)形式返回`host:ip`格式的代理，例如:
+* 1. First, add a custom static method for fetching proxies in the [ProxyFetcher](https://github.com/jhao104/proxy_pool/blob/1a3666283806a22ef287fba1a8efab7b94e94bac/fetcher/proxyFetcher.py#L21) class.
+The method needs to return proxies in `host:ip` format using generator (yield), for example:
 
 ```python
 
 class ProxyFetcher(object):
     # ....
 
-    # 自定义代理源获取方法
+    # Custom proxy source fetch method
     @staticmethod
-    def freeProxyCustom1():  # 命名不和已有重复即可
+    def freeProxyCustom1():  # Just make sure the name doesn't duplicate existing ones
 
-        # 通过某网站或者某接口或某数据库获取代理
-        # 假设你已经拿到了一个代理列表
+        # Get proxies from some website, API, or database
+        # Assume you already have a proxy list
         proxies = ["x.x.x.x:3128", "x.x.x.x:80"]
         for proxy in proxies:
             yield proxy
-        # 确保每个proxy都是 host:ip正确的格式返回
+        # Ensure each proxy is returned in correct host:ip format
 ```
 
-* 2、添加好方法后，修改[setting.py](https://github.com/jhao104/proxy_pool/blob/1a3666283806a22ef287fba1a8efab7b94e94bac/setting.py#L47)文件中的`PROXY_FETCHER`项：
+* 2. After adding the method, modify the `PROXY_FETCHER` item in [setting.py](https://github.com/jhao104/proxy_pool/blob/1a3666283806a22ef287fba1a8efab7b94e94bac/setting.py#L47):
 
-　　在`PROXY_FETCHER`下添加自定义方法的名字:
+Add the custom method name under `PROXY_FETCHER`:
 
 ```python
 PROXY_FETCHER = [
     "freeProxy01",    
     "freeProxy02",
     # ....
-    "freeProxyCustom1"  #  # 确保名字和你添加方法名字一致
+    "freeProxyCustom1"  # Make sure the name matches your added method name
 ]
 ```
 
 
-　　`schedule` 进程会每隔一段时间抓取一次代理，下次抓取时会自动识别调用你定义的方法。
+The `schedule` process will fetch proxies at regular intervals, and will automatically recognize and call your defined method on the next fetch.
 
-### 免费代理源
+### Free Proxy Sources
 
-   目前实现的采集免费代理网站有(排名不分先后, 下面仅是对其发布的免费代理情况, 付费代理测评可以参考[这里](https://zhuanlan.zhihu.com/p/33576641)): 
+Currently implemented free proxy websites (in no particular order, below is only about their free proxy situation, paid proxy reviews can be found [here](https://zhuanlan.zhihu.com/p/33576641)): 
    
-  | 代理名称          |  状态  |  更新速度 |  可用率  |  地址 | 代码                                             |
-  |---------------|  ---- | --------  | ------  | ----- |------------------------------------------------|
-  | 66代理          |  ✔    |     ★     |   *     | [地址](http://www.66ip.cn/)         | [`freeProxy02`](/fetcher/proxyFetcher.py#L50)  |
-  | 开心代理          |   ✔   |     ★     |   *     | [地址](http://www.kxdaili.com/)     | [`freeProxy03`](/fetcher/proxyFetcher.py#L63)  |
-  | FreeProxyList |   ✔  |    ★     |   *    | [地址](https://www.freeproxylists.net/zh/) | [`freeProxy04`](/fetcher/proxyFetcher.py#L74)  |
-  | 快代理           |  ✔    |     ★     |   *     | [地址](https://www.kuaidaili.com/)  | [`freeProxy05`](/fetcher/proxyFetcher.py#L92)  |
-  | 冰凌代理          |  ✔    |    ★★★    |   *     | [地址](https://www.binglx.cn/) | [`freeProxy06`](/fetcher/proxyFetcher.py#L111) |
-  | 云代理           |  ✔    |    ★     |   *     | [地址](http://www.ip3366.net/)      | [`freeProxy07`](/fetcher/proxyFetcher.py#L123) |
-  | 小幻代理          |  ✔    |    ★★    |    *    | [地址](https://ip.ihuan.me/)        | [`freeProxy08`](/fetcher/proxyFetcher.py#L133) |
-  | 免费代理库         |  ✔    |     ☆     |    *    | [地址](http://ip.jiangxianli.com/)   | [`freeProxy09`](/fetcher/proxyFetcher.py#L143) |
-  | 89代理          |  ✔    |     ☆     |   *     | [地址](https://www.89ip.cn/)         | [`freeProxy10`](/fetcher/proxyFetcher.py#L154) |
-  | 稻壳代理          |  ✔    |     ★★    |   ***   | [地址](https://www.docip.ne)         | [`freeProxy11`](/fetcher/proxyFetcher.py#L164) |
+  | Proxy Name        | Status | Update Speed | Availability | URL                                        | Code                                           |
+  |-------------------|--------|--------------|--------------|--------------------------------------------|-------------------------------------------------|
+  | Proxy66           | ✔      | ★            | *            | [URL](http://www.66ip.cn/)                 | [`freeProxy02`](/fetcher/proxyFetcher.py#L50)  |
+  | Kaixin Proxy      | ✔      | ★            | *            | [URL](http://www.kxdaili.com/)             | [`freeProxy03`](/fetcher/proxyFetcher.py#L63)  |
+  | FreeProxyList     | ✔      | ★            | *            | [URL](https://www.freeproxylists.net/zh/)  | [`freeProxy04`](/fetcher/proxyFetcher.py#L74)  |
+  | Kuaidaili         | ✔      | ★            | *            | [URL](https://www.kuaidaili.com/)          | [`freeProxy05`](/fetcher/proxyFetcher.py#L92)  |
+  | Binglx Proxy      | ✔      | ★★★          | *            | [URL](https://www.binglx.cn/)              | [`freeProxy06`](/fetcher/proxyFetcher.py#L111) |
+  | Yun Proxy         | ✔      | ★            | *            | [URL](http://www.ip3366.net/)              | [`freeProxy07`](/fetcher/proxyFetcher.py#L123) |
+  | Xiaohuan Proxy    | ✔      | ★★           | *            | [URL](https://ip.ihuan.me/)                | [`freeProxy08`](/fetcher/proxyFetcher.py#L133) |
+  | Free Proxy Library| ✔      | ☆            | *            | [URL](http://ip.jiangxianli.com/)          | [`freeProxy09`](/fetcher/proxyFetcher.py#L143) |
+  | 89 Proxy          | ✔      | ☆            | *            | [URL](https://www.89ip.cn/)                | [`freeProxy10`](/fetcher/proxyFetcher.py#L154) |
+  | Docip Proxy       | ✔      | ★★           | ***          | [URL](https://www.docip.ne)                | [`freeProxy11`](/fetcher/proxyFetcher.py#L164) |
 
   
-  如果还有其他好的免费代理网站, 可以在提交在[issues](https://github.com/jhao104/proxy_pool/issues/71), 下次更新时会考虑在项目中支持。
+If there are other good free proxy websites, you can submit them in [issues](https://github.com/jhao104/proxy_pool/issues/71), and they will be considered for support in the next update.
 
-### 问题反馈
+### Feedback
 
-　　任何问题欢迎在[Issues](https://github.com/jhao104/proxy_pool/issues) 中反馈，同时也可以到我的[博客](http://www.spiderpy.cn/blog/message)中留言。
+Any questions are welcome in [Issues](https://github.com/jhao104/proxy_pool/issues), or you can leave a message on my [blog](http://www.spiderpy.cn/blog/message).
 
-　　你的反馈会让此项目变得更加完美。
+Your feedback will make this project better.
 
-### 贡献代码
+### Contributing
 
-　　本项目仅作为基本的通用的代理池架构，不接收特有功能(当然,不限于特别好的idea)。
+This project serves only as a basic general proxy pool architecture and does not accept specific features (of course, not limited to particularly good ideas).
 
-　　本项目依然不够完善，如果发现bug或有新的功能添加，请在[Issues](https://github.com/jhao104/proxy_pool/issues)中提交bug(或新功能)描述，我会尽力改进，使她更加完美。
+This project is still not perfect. If you find bugs or have new features to add, please submit bug (or new feature) descriptions in [Issues](https://github.com/jhao104/proxy_pool/issues). I will do my best to improve it.
 
-　　这里感谢以下contributor的无私奉献：
+Thanks to the following contributors for their selfless contributions:
 
-　　[@kangnwh](https://github.com/kangnwh) | [@bobobo80](https://github.com/bobobo80) | [@halleywj](https://github.com/halleywj) | [@newlyedward](https://github.com/newlyedward) | [@wang-ye](https://github.com/wang-ye) | [@gladmo](https://github.com/gladmo) | [@bernieyangmh](https://github.com/bernieyangmh) | [@PythonYXY](https://github.com/PythonYXY) | [@zuijiawoniu](https://github.com/zuijiawoniu) | [@netAir](https://github.com/netAir) | [@scil](https://github.com/scil) | [@tangrela](https://github.com/tangrela) | [@highroom](https://github.com/highroom) | [@luocaodan](https://github.com/luocaodan) | [@vc5](https://github.com/vc5) | [@1again](https://github.com/1again) | [@obaiyan](https://github.com/obaiyan) | [@zsbh](https://github.com/zsbh) | [@jiannanya](https://github.com/jiannanya) | [@Jerry12228](https://github.com/Jerry12228)
+[@kangnwh](https://github.com/kangnwh) | [@bobobo80](https://github.com/bobobo80) | [@halleywj](https://github.com/halleywj) | [@newlyedward](https://github.com/newlyedward) | [@wang-ye](https://github.com/wang-ye) | [@gladmo](https://github.com/gladmo) | [@bernieyangmh](https://github.com/bernieyangmh) | [@PythonYXY](https://github.com/PythonYXY) | [@zuijiawoniu](https://github.com/zuijiawoniu) | [@netAir](https://github.com/netAir) | [@scil](https://github.com/scil) | [@tangrela](https://github.com/tangrela) | [@highroom](https://github.com/highroom) | [@luocaodan](https://github.com/luocaodan) | [@vc5](https://github.com/vc5) | [@1again](https://github.com/1again) | [@obaiyan](https://github.com/obaiyan) | [@zsbh](https://github.com/zsbh) | [@jiannanya](https://github.com/jiannanya) | [@Jerry12228](https://github.com/Jerry12228)
 
 
 ### Release Notes

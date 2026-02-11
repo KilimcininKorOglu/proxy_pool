@@ -1,31 +1,31 @@
 .. how_to_config
 
-配置参考
----------
+Configuration Reference
+------------------------
 
-配置文件 ``setting.py`` 位于项目的主目录下, 配置主要分为四类: **服务配置** 、 **数据库配置** 、 **采集配置** 、 **校验配置**.
+The configuration file ``setting.py`` is located in the project's main directory. Configuration is mainly divided into four categories: **Service Configuration**, **Database Configuration**, **Fetching Configuration**, and **Validation Configuration**.
 
-服务配置
->>>>>>>>>
+Service Configuration
+>>>>>>>>>>>>>>>>>>>>>>
 
 * ``HOST``
 
-    API服务监听的IP, 本机访问设置为 ``127.0.0.1``, 开启远程访问设置为: ``0.0.0.0``.
+    IP address the API service listens on. Set to ``127.0.0.1`` for local access, set to ``0.0.0.0`` for remote access.
 
 * ``PORT``
 
-    API服务监听的端口.
+    Port the API service listens on.
 
-数据库配置
->>>>>>>>>>>
+Database Configuration
+>>>>>>>>>>>>>>>>>>>>>>>
 
 * ``DB_CONN``
 
-    用户存放代理IP的数据库URI, 配置格式为: ``db_type://[[user]:[pwd]]@ip:port/[db]``.
+    Database URI for storing proxy IPs. Configuration format: ``db_type://[[user]:[pwd]]@ip:port/[db]``.
 
-    目前支持的db_type有: ``ssdb`` 、 ``redis``.
+    Currently supported db_types: ``ssdb``, ``redis``.
 
-    配置示例:
+    Configuration examples:
 
 .. code-block:: python
 
@@ -44,40 +44,40 @@
 
 * ``TABLE_NAME``
 
-    存放代理的数据载体名称, ssdb和redis的存放结构为hash.
+    Name of the data container for storing proxies. Storage structure for ssdb and redis is hash.
 
-采集配置
->>>>>>>>>
+Fetching Configuration
+>>>>>>>>>>>>>>>>>>>>>>>
 
 * ``PROXY_FETCHER``
 
-    启用的代理采集方法名, 代理采集方法位于 ``fetcher/proxyFetcher.py`` 类中.
+    Names of enabled proxy fetching methods. Proxy fetching methods are located in ``fetcher/proxyFetcher.py`` class.
 
-    由于各个代理源的稳定性不容易掌握, 当某个代理采集方法失效时, 可以该配置中注释掉其名称.
+    Since the stability of various proxy sources is hard to predict, when a proxy fetching method becomes invalid, you can comment out its name in this configuration.
 
-    如果有增加某些代理采集方法, 也请在该配置中添加其方法名, 具体请参考 :doc:`/dev/extend_fetcher`.
+    If you add new proxy fetching methods, please also add their method names in this configuration. For details, please refer to :doc:`/dev/extend_fetcher`.
 
-    调度程序每次执行采集任务时都会再次加载该配置, 保证每次运行的采集方法都是有效的.
+    The scheduler reloads this configuration each time it executes a fetching task, ensuring that the fetching methods run each time are valid.
 
-校验配置
->>>>>>>>>
+Validation Configuration
+>>>>>>>>>>>>>>>>>>>>>>>>>
 
 * ``HTTP_URL``
 
-    用于检验代理是否可用的地址, 默认为 ``http://httpbin.org``, 可根据使用场景修改为其他地址.
+    Address used to verify if a proxy is available. Default is ``http://httpbin.org``, can be modified to other addresses based on usage scenario.
 
 * ``HTTPS_URL``
 
-    用于检验代理是否支持HTTPS的地址, 默认为 ``https://www.qq.com``, 可根据使用场景修改为其他地址.
+    Address used to verify if a proxy supports HTTPS. Default is ``https://www.qq.com``, can be modified to other addresses based on usage scenario.
 
 * ``VERIFY_TIMEOUT``
 
-    检验代理的超时时间, 默认为 ``10`` , 单位秒. 使用代理访问 ``HTTP(S)_URL`` 耗时超过 ``VERIFY_TIMEOUT`` 时, 视为代理不可用.
+    Timeout for proxy verification. Default is ``10`` seconds. When accessing ``HTTP(S)_URL`` via proxy takes longer than ``VERIFY_TIMEOUT``, the proxy is considered unavailable.
 
 * ``MAX_FAIL_COUNT``
 
-    检验代理允许最大失败次数, 默认为 ``0``, 即出错一次即删除.
+    Maximum allowed failure count for proxy verification. Default is ``0``, meaning delete after one failure.
 
 * ``POOL_SIZE_MIN``
 
-    代理检测定时任务运行前若代理数量小于 `POOL_SIZE_MIN`, 则先运行抓取程序.
+    If proxy count is less than `POOL_SIZE_MIN` before the proxy check scheduled task runs, the fetching program will run first.

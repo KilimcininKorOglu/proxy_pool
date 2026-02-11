@@ -2,14 +2,14 @@
 """
 -----------------------------------------------------
    File Name：     redisClient.py
-   Description :   封装Redis相关操作
+   Description :   Encapsulate Redis related operations
    Author :        JHao
    date：          2019/8/9
 ------------------------------------------------------
    Change Activity:
-                   2019/08/09: 封装Redis相关操作
-                   2020/06/23: 优化pop方法, 改用hscan命令
-                   2021/05/26: 区别http/https代理
+                   2019/08/09: Encapsulate Redis related operations
+                   2020/06/23: Optimize pop method, use hscan command
+                   2021/05/26: Distinguish http/https proxies
 ------------------------------------------------------
 """
 __author__ = 'JHao'
@@ -26,8 +26,8 @@ class RedisClient(object):
     """
     Redis client
 
-    Redis中代理存放的结构为hash：
-    key为ip:port, value为代理属性的字典;
+    Proxy storage structure in Redis is hash:
+    key is ip:port, value is a dictionary of proxy attributes;
 
     """
 
@@ -49,7 +49,7 @@ class RedisClient(object):
 
     def get(self, https):
         """
-        返回一个代理
+        Return a proxy
         :return:
         """
         if https:
@@ -63,7 +63,7 @@ class RedisClient(object):
 
     def put(self, proxy_obj):
         """
-        将代理放入hash, 使用changeTable指定hash name
+        Put proxy into hash, use changeTable to specify hash name
         :param proxy_obj: Proxy obj
         :return:
         """
@@ -72,7 +72,7 @@ class RedisClient(object):
 
     def pop(self, https):
         """
-        弹出一个代理
+        Pop a proxy
         :return: dict {proxy: value}
         """
         proxy = self.get(https)
@@ -82,7 +82,7 @@ class RedisClient(object):
 
     def delete(self, proxy_str):
         """
-        移除指定代理, 使用changeTable指定hash name
+        Remove specified proxy, use changeTable to specify hash name
         :param proxy_str: proxy str
         :return:
         """
@@ -90,7 +90,7 @@ class RedisClient(object):
 
     def exists(self, proxy_str):
         """
-        判断指定代理是否存在, 使用changeTable指定hash name
+        Check if specified proxy exists, use changeTable to specify hash name
         :param proxy_str: proxy str
         :return:
         """
@@ -98,7 +98,7 @@ class RedisClient(object):
 
     def update(self, proxy_obj):
         """
-        更新 proxy 属性
+        Update proxy attributes
         :param proxy_obj:
         :return:
         """
@@ -106,7 +106,7 @@ class RedisClient(object):
 
     def getAll(self, https):
         """
-        字典形式返回所有代理, 使用changeTable指定hash name
+        Return all proxies in dictionary form, use changeTable to specify hash name
         :return:
         """
         items = self.__conn.hvals(self.name)
@@ -117,14 +117,14 @@ class RedisClient(object):
 
     def clear(self):
         """
-        清空所有代理, 使用changeTable指定hash name
+        Clear all proxies, use changeTable to specify hash name
         :return:
         """
         return self.__conn.delete(self.name)
 
     def getCount(self):
         """
-        返回代理数量
+        Return proxy count
         :return:
         """
         proxies = self.getAll(https=False)
@@ -132,7 +132,7 @@ class RedisClient(object):
 
     def changeTable(self, name):
         """
-        切换操作对象
+        Switch operation target
         :param name:
         :return:
         """

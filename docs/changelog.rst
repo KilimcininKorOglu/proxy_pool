@@ -6,64 +6,64 @@ ChangeLog
 2.4.2 (2024-01-18)
 ------------------
 
-1. 代理格式检查支持需认证的代理格式 `username:password@ip:port` ; (2023-03-10)
-2. 新增代理源 **稻壳代理**; (2023-05-15)
-3. 新增代理源 **冰凌代理**; (2023-01-18)
+1. Proxy format check supports authenticated proxy format `username:password@ip:port`; (2023-03-10)
+2. Added proxy source **Docip Proxy**; (2023-05-15)
+3. Added proxy source **Binglx Proxy**; (2023-01-18)
 
 2.4.1 (2022-07-17)
 ------------------
 
-1. 新增代理源 **FreeProxyList**; (2022-07-21)
-2. 新增代理源 **FateZero**; (2022-08-01)
-3. 新增代理属性 ``region``; (2022-08-16)
+1. Added proxy source **FreeProxyList**; (2022-07-21)
+2. Added proxy source **FateZero**; (2022-08-01)
+3. Added proxy attribute ``region``; (2022-08-16)
 
 2.4.0 (2021-11-17)
 ------------------
 
-1. 移除无效代理源 **神鸡代理**; (2021-11-16)
-2. 移除无效代理源 **极速代理**; (2021-11-16)
-3. 移除代理源 **西拉代理**; (2021-11-16)
-4. 新增代理源 **蝶鸟IP**; (2021-11-16)
-5. 新增代理源 **PROXY11**; (2021-11-16)
-6. 多线程采集代理; (2021-11-17)
+1. Removed invalid proxy source **Shenji Proxy**; (2021-11-16)
+2. Removed invalid proxy source **Jisu Proxy**; (2021-11-16)
+3. Removed proxy source **Xila Proxy**; (2021-11-16)
+4. Added proxy source **Dieniao IP**; (2021-11-16)
+5. Added proxy source **PROXY11**; (2021-11-16)
+6. Multi-threaded proxy fetching; (2021-11-17)
 
 2.3.0 (2021-05-27)
 ------------------
 
-1. 修复Dockerfile时区问题; (2021-04-12)
-2. 新增Proxy属性 ``source``, 标记代理来源; (2021-04-13)
-3. 新增Proxy属性 ``https``, 标记支持https的代理; (2021-05-27)
+1. Fixed Dockerfile timezone issue; (2021-04-12)
+2. Added Proxy attribute ``source`` to mark proxy origin; (2021-04-13)
+3. Added Proxy attribute ``https`` to mark https-supporting proxies; (2021-05-27)
 
 2.2.0 (2021-04-08)
 ------------------
 
-1. 启动时检查数据库连通性;
-2. 新增免费代理源 **米扑代理**;
-3. 新增免费代理源 **Pzzqz**;
-4. 新增免费代理源 **神鸡代理**;
-5. 新增免费代理源 **极速代理**;
-6. 新增免费代理源 **小幻代理**;
+1. Check database connectivity on startup;
+2. Added free proxy source **Mipu Proxy**;
+3. Added free proxy source **Pzzqz**;
+4. Added free proxy source **Shenji Proxy**;
+5. Added free proxy source **Jisu Proxy**;
+6. Added free proxy source **Xiaohuan Proxy**;
 
 2.1.1 (2021-02-23)
 ------------------
 
-1. Fix Bug `#493`_, 新增时区配置; (2020-08-12)
-2. 修复 **66代理** 采集; (2020-11-04)
-3. 修复 **全网代理** 采集, 解决HTML端口加密问题; (2020-11-04)
-4. 新增 **代理盒子** 免费源; (2020-11-04)
-5. 新增 ``POOL_SIZE_MIN`` 配置项, runProxyCheck时, 剩余代理少于POOL_SIZE_MIN触发抓取; (2021-02-23)
+1. Fix Bug `#493`_, added timezone configuration; (2020-08-12)
+2. Fixed **Proxy66** fetching; (2020-11-04)
+3. Fixed **Quanwang Proxy** fetching, solved HTML port encryption issue; (2020-11-04)
+4. Added **Proxy Box** free source; (2020-11-04)
+5. Added ``POOL_SIZE_MIN`` config option, trigger fetching when remaining proxies are less than POOL_SIZE_MIN during runProxyCheck; (2021-02-23)
 
 .. _#493: https://github.com/jhao104/proxy_pool/issues/493
 
 2.1.0 (2020.07)
 ------------------
 
-1. 新增免费代理源 **西拉代理**  （2020-03-30）
+1. Added free proxy source **Xila Proxy** (2020-03-30)
 2. Fix Bug `#356`_ `#401`_
-3. 优化Docker镜像体积; (2020-06-19)
-4. 优化配置方式;
-5. 优化代码结构;
-6. 不再储存raw_proxy, 抓取后直接验证入库;
+3. Optimized Docker image size; (2020-06-19)
+4. Optimized configuration method;
+5. Optimized code structure;
+6. No longer store raw_proxy, validate and store directly after fetching;
 
 .. _#401: https://github.com/jhao104/proxy_pool/issues/401
 .. _#356: https://github.com/jhao104/proxy_pool/issues/356
@@ -71,38 +71,38 @@ ChangeLog
 2.0.1 (2019.10)
 -----------------
 
-1. 新增免费代理源 **89免费代理**;
-#. 新增免费代理源 **齐云代理**
+1. Added free proxy source **89 Free Proxy**;
+#. Added free proxy source **Qiyun Proxy**
 
 2.0.0 (2019.08)
 ------------------
 
-1. WebApi集成Gunicorn方式启动, Windows平台暂不支持;
-#. 优化Proxy调度程序;
-#. 扩展Proxy属性;
-#. 新增cli工具, 更加方便启动proxyPool
+1. WebApi integrated Gunicorn startup, Windows platform not supported yet;
+#. Optimized Proxy scheduler;
+#. Extended Proxy attributes;
+#. Added CLI tool for easier proxyPool startup
 
 1.14  (2019.07)
 -----------------
 
-1. 修复 Queue阻塞导致的 ``ProxyValidSchedule`` 假死bug;
-#. 修改代理源 **云代理** 抓取;
-#. 修改代理源 **码农代理** 抓取;
-#. 修改代理源 **代理66** 抓取, 引入 ``PyExecJS`` 模块破解加速乐动态Cookies加密;
+1. Fixed ``ProxyValidSchedule`` deadlock bug caused by Queue blocking;
+#. Modified **Yun Proxy** fetching;
+#. Modified **Manong Proxy** fetching;
+#. Modified **Proxy66** fetching, introduced ``PyExecJS`` module to crack Jiasule dynamic Cookies encryption;
 
 1.13  (2019.02)
 -----------------
 
-1. 使用.py文件替换.ini作为配置文件;
+1. Use .py file instead of .ini as configuration file;
 
-#. 优化代理采集部分；
+#. Optimized proxy fetching part;
 
 1.12  (2018.04)
 -----------------
 
-1. 优化代理格式检查;
+1. Optimized proxy format check;
 
-#. 增加代理源;
+#. Added proxy sources;
 
 #. fix bug `#122`_  `#126`_
 
@@ -112,13 +112,13 @@ ChangeLog
 1.11  (2017.08)
 -----------------
 
-1. 使用多线程验证useful_pool;
+1. Use multi-threading to validate useful_pool;
 
 1.10  (2016.11)
 -----------------
 
-1. 第一版；
+1. First version;
 
-#. 支持PY2/PY3;
+#. Support PY2/PY3;
 
-#. 代理池基本功能；
+#. Basic proxy pool functionality;

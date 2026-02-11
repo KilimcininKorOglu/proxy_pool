@@ -2,7 +2,7 @@
 """
 -------------------------------------------------
    File Name：     setting.py
-   Description :   配置文件
+   Description :   Configuration file
    Author :        JHao
    date：          2019/2/15
 -------------------------------------------------
@@ -59,25 +59,25 @@ PROXY_FETCHER = [
 ]
 
 # ############# proxy validator #################
-# 代理验证目标网站
+# Target website for proxy validation
 HTTP_URL = "http://httpbin.org"
 
 HTTPS_URL = "https://www.qq.com"
 
-# 代理验证时超时时间
+# Timeout for proxy validation
 VERIFY_TIMEOUT = 10
 
-# 近PROXY_CHECK_COUNT次校验中允许的最大失败次数,超过则剔除代理
+# Maximum allowed failures in recent PROXY_CHECK_COUNT validations, proxy is removed if exceeded
 MAX_FAIL_COUNT = 0
 
-# 近PROXY_CHECK_COUNT次校验中允许的最大失败率,超过则剔除代理
+# Maximum allowed failure rate in recent PROXY_CHECK_COUNT validations, proxy is removed if exceeded
 # MAX_FAIL_RATE = 0.1
 
-# proxyCheck时代理数量少于POOL_SIZE_MIN触发抓取
+# Trigger proxy fetching when proxy count falls below POOL_SIZE_MIN during proxyCheck
 POOL_SIZE_MIN = 20
 
 # ############# proxy attributes #################
-# 是否启用代理地域属性
+# Enable proxy region attribute
 PROXY_REGION = True
 
 # ############# scheduler config #################

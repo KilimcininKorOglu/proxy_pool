@@ -2,7 +2,7 @@
 """
 -------------------------------------------------
    File Name：     proxy_pool
-   Description :   proxy pool 启动入口
+   Description :   Proxy pool entry point
    Author :        JHao
    date：          2020/6/19
 -------------------------------------------------
@@ -22,19 +22,19 @@ CONTEXT_SETTINGS = dict(help_option_names=['-h', '--help'])
 @click.group(context_settings=CONTEXT_SETTINGS)
 @click.version_option(version=VERSION)
 def cli():
-    """ProxyPool cli工具"""
+    """ProxyPool CLI tool"""
 
 
 @cli.command(name="schedule")
 def schedule():
-    """ 启动调度程序 """
+    """ Start the scheduler """
     click.echo(BANNER)
     startScheduler()
 
 
 @cli.command(name="server")
 def server():
-    """ 启动api服务 """
+    """ Start the API server """
     click.echo(BANNER)
     startServer()
 

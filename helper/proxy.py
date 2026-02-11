@@ -2,12 +2,12 @@
 """
 -------------------------------------------------
    File Name：     Proxy
-   Description :   代理对象类型封装
+   Description :   Proxy object type encapsulation
    Author :        JHao
    date：          2019/7/11
 -------------------------------------------------
    Change Activity:
-                   2019/7/11: 代理对象类型封装
+                   2019/7/11: Proxy object type encapsulation
 -------------------------------------------------
 """
 __author__ = 'JHao'
@@ -45,52 +45,52 @@ class Proxy(object):
 
     @property
     def proxy(self):
-        """ 代理 ip:port """
+        """ Proxy ip:port """
         return self._proxy
 
     @property
     def fail_count(self):
-        """ 检测失败次数 """
+        """ Number of failed checks """
         return self._fail_count
 
     @property
     def region(self):
-        """ 地理位置(国家/城市) """
+        """ Geographic location (country/city) """
         return self._region
 
     @property
     def anonymous(self):
-        """ 匿名 """
+        """ Anonymous """
         return self._anonymous
 
     @property
     def source(self):
-        """ 代理来源 """
+        """ Proxy source """
         return '/'.join(self._source)
 
     @property
     def check_count(self):
-        """ 代理检测次数 """
+        """ Proxy check count """
         return self._check_count
 
     @property
     def last_status(self):
-        """ 最后一次检测结果  True -> 可用; False -> 不可用"""
+        """ Last check result  True -> available; False -> unavailable """
         return self._last_status
 
     @property
     def last_time(self):
-        """ 最后一次检测时间 """
+        """ Last check time """
         return self._last_time
 
     @property
     def https(self):
-        """ 是否支持https """
+        """ Whether https is supported """
         return self._https
 
     @property
     def to_dict(self):
-        """ 属性字典 """
+        """ Attribute dictionary """
         return {"proxy": self.proxy,
                 "https": self.https,
                 "fail_count": self.fail_count,
@@ -103,7 +103,7 @@ class Proxy(object):
 
     @property
     def to_json(self):
-        """ 属性json格式 """
+        """ Attribute in json format """
         return json.dumps(self.to_dict, ensure_ascii=False)
 
     @fail_count.setter

@@ -20,24 +20,24 @@ ProxyPool
    *************************       ********************************
    ****************************************************************
 
-Python爬虫代理IP池
+Python Crawler Proxy IP Pool
 
-安装
------
+Installation
+-------------
 
-* 下载代码
+* Download code
 
 .. code-block:: console
 
     $ git clone git@github.com:jhao104/proxy_pool.git
 
-* 安装依赖
+* Install dependencies
 
 .. code-block:: console
 
     $ pip install -r requirements.txt
 
-* 更新配置
+* Update configuration
 
 .. code-block:: python
 
@@ -52,14 +52,14 @@ Python爬虫代理IP池
        # ....
    ]
 
-* 启动项目
+* Start project
 
 .. code-block:: console
 
     $ python proxyPool.py schedule
     $ python proxyPool.py server
 
-使用
+Usage
 ______
 
 * API
@@ -67,16 +67,16 @@ ______
 ============     ========    ================       ==============
 Api               Method      Description            Params
 ============     ========    ================       ==============
-/                GET         API介绍                 无
-/get             GET         返回一个代理             可选参数: `?type=https` 过滤支持https的代理
-/pop             GET         返回并删除一个代理        可选参数: `?type=https` 过滤支持https的代理
-/all             GET         返回所有代理             可选参数: `?type=https` 过滤支持https的代理
-/count           GET         返回代理数量             无
-/delete          GET         删除指定代理             `?proxy=host:ip`
+/                GET         API introduction        None
+/get             GET         Return a proxy          Optional: `?type=https` filter https-supporting proxies
+/pop             GET         Return and delete       Optional: `?type=https` filter https-supporting proxies
+/all             GET         Return all proxies      Optional: `?type=https` filter https-supporting proxies
+/count           GET         Return proxy count      None
+/delete          GET         Delete specified proxy  `?proxy=host:ip`
 ============     ========    ================       ==============
 
 
-* 爬虫
+* Crawler
 
 .. code-block:: python
 
@@ -97,11 +97,11 @@ Api               Method      Description            Params
        while retry_count > 0:
            try:
                html = requests.get('https://www.example.com', proxies={"http": "http://{}".format(proxy), "https": "https://{}".format(proxy)})
-               # 使用代理访问
+               # Access using proxy
                return html
            except Exception:
                retry_count -= 1
-               # 删除代理池中代理
+               # Delete proxy from pool
                delete_proxy(proxy)
        return None
 

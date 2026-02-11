@@ -1,26 +1,26 @@
 .. how_to_use
 
-如何使用
-----------
+How to Use
+-----------
 
-爬虫代码要对接代理池目前有两种方式: 一是通过调用API接口使用, 二是直接读取数据库.
+There are currently two ways for crawler code to connect to the proxy pool: one is through calling the API interface, and the other is directly reading from the database.
 
-调用API
+Call API
 >>>>>>>>>
 
-启动ProxyPool的 ``server`` 后会提供如下几个http接口:
+After starting ProxyPool's ``server``, the following HTTP interfaces will be provided:
 
 ============     ========    ================       ==============
 Api               Method      Description            Arg
 ============     ========    ================       ==============
-/                GET         API介绍                 无
-/get             GET         随机返回一个代理         无
-/get_all         GET         返回所有代理             无
-/get_status      GET         返回代理数量             无
-/delete          GET         删除指定代理             proxy=host:ip
+/                GET         API introduction        None
+/get             GET         Return a random proxy   None
+/get_all         GET         Return all proxies      None
+/get_status      GET         Return proxy count      None
+/delete          GET         Delete specified proxy  proxy=host:ip
 ============     ========    ================       ==============
 
-在代码中可以通过封装上面的API接口来使用代理, 例子:
+You can use proxies by wrapping the above API interfaces in your code, example:
 
 .. code-block:: python
 
@@ -40,24 +40,24 @@ Api               Method      Description            Arg
        proxy = get_proxy().get("proxy")
        while retry_count > 0:
            try:
-               # 使用代理访问
+               # Access using proxy
                html = requests.get('http://www.example.com', proxies={"http": "http://{}".format(proxy)})
                return html
            except Exception:
                retry_count -= 1
-               # 删除代理池中代理
+               # Delete proxy from pool
                delete_proxy(proxy)
        return None
 
-本例中我们在本地 ``127.0.0.1`` 启动端口为 ``5010`` 的 ``server``, 使用 ``/get`` 接口获取代理, ``/delete`` 删除代理.
+In this example, we start a ``server`` on local ``127.0.0.1`` with port ``5010``, use ``/get`` interface to get proxies, and ``/delete`` to delete proxies.
 
-读数据库
->>>>>>>>>
+Read Database
+>>>>>>>>>>>>>>
 
-目前支持配置两种数据库: ``REDIS`` 、 ``SSDB``.
+Currently two types of databases are supported: ``REDIS`` and ``SSDB``.
 
-* **REDIS** 储存结构为 ``hash``, hash name为配置项中的 **TABLE_NAME**
+* **REDIS** storage structure is ``hash``, hash name is **TABLE_NAME** in configuration
 
-* **SSDB** 储存结构为 ``hash``, hash name为配置项中的 **TABLE_NAME**
+* **SSDB** storage structure is ``hash``, hash name is **TABLE_NAME** in configuration
 
-可以在代码中自行读取.
+You can read directly from the database in your code.

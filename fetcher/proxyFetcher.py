@@ -27,14 +27,14 @@ class ProxyFetcher(object):
     @staticmethod
     def freeProxy01():
         """
-        站大爷 https://www.zdaye.com/dayProxy.html
+        Zhandaye https://www.zdaye.com/dayProxy.html
         """
         start_url = "https://www.zdaye.com/dayProxy.html"
         html_tree = WebRequest().get(start_url, verify=False).tree
         latest_page_time = html_tree.xpath("//span[@class='thread_time_info']/text()")[0].strip()
         from datetime import datetime
         interval = datetime.now() - datetime.strptime(latest_page_time, "%Y/%m/%d %H:%M:%S")
-        if interval.seconds < 300:  # 只采集5分钟内的更新
+        if interval.seconds < 300:  # Only fetch updates within 5 minutes
             target_url = "https://www.zdaye.com/" + html_tree.xpath("//h3[@class='thread_title']/a/@href")[0].strip()
             while target_url:
                 _tree = WebRequest().get(target_url, verify=False).tree
@@ -49,7 +49,7 @@ class ProxyFetcher(object):
     @staticmethod
     def freeProxy02():
         """
-        代理66 http://www.66ip.cn/
+        Proxy66 http://www.66ip.cn/
         """
         url = "http://www.66ip.cn/"
         resp = WebRequest().get(url, timeout=10).tree
@@ -61,7 +61,7 @@ class ProxyFetcher(object):
 
     @staticmethod
     def freeProxy03():
-        """ 开心代理 """
+        """ Kaixin Proxy """
         target_urls = ["http://www.kxdaili.com/dailiip.html", "http://www.kxdaili.com/dailiip/2/1.html"]
         for url in target_urls:
             tree = WebRequest().get(url).tree
@@ -90,7 +90,7 @@ class ProxyFetcher(object):
 
     @staticmethod
     def freeProxy05(page_count=1):
-        """ 快代理 https://www.kuaidaili.com """
+        """ Kuaidaili https://www.kuaidaili.com """
         url_pattern = [
             'https://www.kuaidaili.com/free/inha/{}/',
             'https://www.kuaidaili.com/free/intr/{}/'
@@ -103,13 +103,13 @@ class ProxyFetcher(object):
         for url in url_list:
             tree = WebRequest().get(url).tree
             proxy_list = tree.xpath('.//table//tr')
-            sleep(1)  # 必须sleep 不然第二条请求不到数据
+            sleep(1)  # Must sleep otherwise second request won't get data
             for tr in proxy_list[1:]:
                 yield ':'.join(tr.xpath('./td/text()')[0:2])
 
     @staticmethod
     def freeProxy06():
-        """ 冰凌代理 https://www.binglx.cn """
+        """ Binglx Proxy https://www.binglx.cn """
         url = "https://www.binglx.cn/?page=1"
         try:
             tree = WebRequest().get(url).tree
@@ -121,7 +121,7 @@ class ProxyFetcher(object):
 
     @staticmethod
     def freeProxy07():
-        """ 云代理 """
+        """ Yun Proxy """
         urls = ['http://www.ip3366.net/free/?stype=1', "http://www.ip3366.net/free/?stype=2"]
         for url in urls:
             r = WebRequest().get(url, timeout=10)
@@ -131,7 +131,7 @@ class ProxyFetcher(object):
 
     @staticmethod
     def freeProxy08():
-        """ 小幻代理 """
+        """ Xiaohuan Proxy """
         urls = ['https://ip.ihuan.me/address/5Lit5Zu9.html']
         for url in urls:
             r = WebRequest().get(url, timeout=10)
@@ -141,7 +141,7 @@ class ProxyFetcher(object):
 
     @staticmethod
     def freeProxy09(page_count=1):
-        """ 免费代理库 """
+        """ Free Proxy Library """
         for i in range(1, page_count + 1):
             url = 'http://ip.jiangxianli.com/?country=中国&page={}'.format(i)
             html_tree = WebRequest().get(url, verify=False).tree
@@ -152,7 +152,7 @@ class ProxyFetcher(object):
 
     @staticmethod
     def freeProxy10():
-        """ 89免费代理 """
+        """ 89 Free Proxy """
         r = WebRequest().get("https://www.89ip.cn/index_1.html", timeout=10)
         proxies = re.findall(
             r'<td.*?>[\s\S]*?(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})[\s\S]*?</td>[\s\S]*?<td.*?>[\s\S]*?(\d+)[\s\S]*?</td>',
@@ -162,7 +162,7 @@ class ProxyFetcher(object):
 
     @staticmethod
     def freeProxy11():
-        """ 稻壳代理 https://www.docip.net/ """
+        """ Docip Proxy https://www.docip.net/ """
         r = WebRequest().get("https://www.docip.net/data/free.json", timeout=10)
         try:
             for each in r.json['data']:
@@ -196,7 +196,7 @@ class ProxyFetcher(object):
     # @staticmethod
     # def freeProxy10():
     #     """
-    #     墙外网站 cn-proxy
+    #     Overseas website cn-proxy
     #     :return:
     #     """
     #     urls = ['http://cn-proxy.com/', 'http://cn-proxy.com/archives/218']

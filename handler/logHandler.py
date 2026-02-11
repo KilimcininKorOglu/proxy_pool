@@ -2,14 +2,14 @@
 """
 -------------------------------------------------
    File Name：     LogHandler.py
-   Description :  日志操作模块
+   Description :  Log operation module
    Author :       JHao
    date：          2017/3/6
 -------------------------------------------------
    Change Activity:
                    2017/03/06: log handler
-                   2017/09/21: 屏幕输出/文件输出 可选(默认屏幕和文件均输出)
-                   2020/07/13: Windows下TimedRotatingFileHandler线程不安全, 不再使用
+                   2017/09/21: Screen output/file output optional (default both screen and file output)
+                   2020/07/13: TimedRotatingFileHandler is not thread-safe on Windows, no longer used
 -------------------------------------------------
 """
 __author__ = 'JHao'
@@ -20,7 +20,7 @@ import platform
 
 from logging.handlers import TimedRotatingFileHandler
 
-# 日志级别
+# Log levels
 CRITICAL = 50
 FATAL = CRITICAL
 ERROR = 40
@@ -63,7 +63,7 @@ class LogHandler(logging.Logger):
         :return:
         """
         file_name = os.path.join(LOG_PATH, '{name}.log'.format(name=self.name))
-        # 设置日志回滚, 保存在log目录, 一天保存一个文件, 保留15天
+        # Set log rotation, save in log directory, one file per day, keep 15 days
         file_handler = TimedRotatingFileHandler(filename=file_name, when='D', interval=1, backupCount=15)
         file_handler.suffix = '%Y%m%d.log'
         if not level:

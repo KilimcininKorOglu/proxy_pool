@@ -2,14 +2,14 @@
 """
 -------------------------------------------------
    File Name：     check
-   Description :   执行代理校验
+   Description :   Execute proxy validation
    Author :        JHao
    date：          2019/8/6
 -------------------------------------------------
    Change Activity:
-                   2019/08/06: 执行代理校验
-                   2021/05/25: 分别校验http和https
-                   2022/08/16: 获取代理Region信息
+                   2019/08/06: Execute proxy validation
+                   2021/05/25: Validate http and https separately
+                   2022/08/16: Get proxy region information
 -------------------------------------------------
 """
 __author__ = 'JHao'
@@ -25,14 +25,14 @@ from handler.configHandler import ConfigHandler
 
 
 class DoValidator(object):
-    """ 执行校验 """
+    """ Execute validation """
 
     conf = ConfigHandler()
 
     @classmethod
     def validator(cls, proxy, work_type):
         """
-        校验入口
+        Validation entry point
         Args:
             proxy: Proxy Object
             work_type: raw/use
@@ -87,7 +87,7 @@ class DoValidator(object):
 
 
 class _ThreadChecker(Thread):
-    """ 多线程检测 """
+    """ Multi-threaded checker """
 
     def __init__(self, work_type, target_queue, thread_name):
         Thread.__init__(self, name=thread_name)

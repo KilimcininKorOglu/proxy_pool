@@ -3,16 +3,16 @@
 """
 -------------------------------------------------
    File Name：     ssdbClient.py
-   Description :   封装SSDB操作
+   Description :   Encapsulate SSDB operations
    Author :        JHao
    date：          2016/12/2
 -------------------------------------------------
    Change Activity:
                    2016/12/2:
-                   2017/09/22: PY3中 redis-py返回的数据是bytes型
-                   2017/09/27: 修改pop()方法 返回{proxy:value}字典
-                   2020/07/03: 2.1.0 优化代码结构
-                   2021/05/26: 区分http和https代理
+                   2017/09/22: In PY3, redis-py returns bytes type data
+                   2017/09/27: Modified pop() method to return {proxy:value} dictionary
+                   2020/07/03: 2.1.0 Optimized code structure
+                   2021/05/26: Distinguish http and https proxies
 -------------------------------------------------
 """
 __author__ = 'JHao'
@@ -28,8 +28,8 @@ class SsdbClient(object):
     """
     SSDB client
 
-    SSDB中代理存放的结构为hash：
-    key为代理的ip:por, value为代理属性的字典;
+    Proxy storage structure in SSDB is hash:
+    key is proxy's ip:port, value is a dictionary of proxy attributes;
     """
 
     def __init__(self, **kwargs):
@@ -49,7 +49,7 @@ class SsdbClient(object):
 
     def get(self, https):
         """
-        从hash中随机返回一个代理
+        Randomly return a proxy from hash
         :return:
         """
         if https:
@@ -63,7 +63,7 @@ class SsdbClient(object):
 
     def put(self, proxy_obj):
         """
-        将代理放入hash
+        Put proxy into hash
         :param proxy_obj: Proxy obj
         :return:
         """
@@ -72,7 +72,7 @@ class SsdbClient(object):
 
     def pop(self, https):
         """
-        顺序弹出一个代理
+        Pop a proxy in order
         :return: proxy
         """
         proxy = self.get(https)
@@ -82,7 +82,7 @@ class SsdbClient(object):
 
     def delete(self, proxy_str):
         """
-        移除指定代理, 使用changeTable指定hash name
+        Remove specified proxy, use changeTable to specify hash name
         :param proxy_str: proxy str
         :return:
         """
@@ -90,7 +90,7 @@ class SsdbClient(object):
 
     def exists(self, proxy_str):
         """
-        判断指定代理是否存在, 使用changeTable指定hash name
+        Check if specified proxy exists, use changeTable to specify hash name
         :param proxy_str: proxy str
         :return:
         """
@@ -98,7 +98,7 @@ class SsdbClient(object):
 
     def update(self, proxy_obj):
         """
-        更新 proxy 属性
+        Update proxy attributes
         :param proxy_obj:
         :return:
         """
@@ -106,7 +106,7 @@ class SsdbClient(object):
 
     def getAll(self, https):
         """
-        字典形式返回所有代理, 使用changeTable指定hash name
+        Return all proxies in dictionary form, use changeTable to specify hash name
         :return:
         """
         item_dict = self.__conn.hgetall(self.name)
@@ -117,14 +117,14 @@ class SsdbClient(object):
 
     def clear(self):
         """
-        清空所有代理, 使用changeTable指定hash name
+        Clear all proxies, use changeTable to specify hash name
         :return:
         """
         return self.__conn.delete(self.name)
 
     def getCount(self):
         """
-        返回代理数量
+        Return proxy count
         :return:
         """
         proxies = self.getAll(https=False)
@@ -132,7 +132,7 @@ class SsdbClient(object):
 
     def changeTable(self, name):
         """
-        切换操作对象
+        Switch operation target
         :param name:
         :return:
         """

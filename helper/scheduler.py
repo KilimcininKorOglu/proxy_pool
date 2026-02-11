@@ -8,7 +8,7 @@
 -------------------------------------------------
    Change Activity:
                    2019/08/05: proxyScheduler
-                   2021/02/23: runProxyCheck时,剩余代理少于POOL_SIZE_MIN时执行抓取
+                   2021/02/23: Execute fetch when remaining proxies are less than POOL_SIZE_MIN during runProxyCheck
 -------------------------------------------------
 """
 __author__ = 'JHao'
@@ -51,8 +51,8 @@ def runScheduler():
     scheduler_log = LogHandler("scheduler")
     scheduler = BlockingScheduler(logger=scheduler_log, timezone=timezone)
 
-    scheduler.add_job(__runProxyFetch, 'interval', minutes=4, id="proxy_fetch", name="proxy采集")
-    scheduler.add_job(__runProxyCheck, 'interval', minutes=2, id="proxy_check", name="proxy检查")
+    scheduler.add_job(__runProxyFetch, 'interval', minutes=4, id="proxy_fetch", name="proxy fetch")
+    scheduler.add_job(__runProxyCheck, 'interval', minutes=2, id="proxy_check", name="proxy check")
     executors = {
         'default': {'type': 'threadpool', 'max_workers': 20},
         'processpool': ProcessPoolExecutor(max_workers=5)

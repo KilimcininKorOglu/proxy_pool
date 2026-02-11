@@ -2,12 +2,12 @@
 """
 -------------------------------------------------
    File Name：     _validators
-   Description :   定义proxy验证方法
+   Description :   Define proxy validation methods
    Author :        JHao
    date：          2021/5/25
 -------------------------------------------------
    Change Activity:
-                   2023/03/10: 支持带用户认证的代理格式 username:password@ip:port
+                   2023/03/10: Support proxy format with user authentication username:password@ip:port
 -------------------------------------------------
 """
 __author__ = 'JHao'
@@ -51,13 +51,13 @@ class ProxyValidator(withMetaclass(Singleton)):
 
 @ProxyValidator.addPreValidator
 def formatValidator(proxy):
-    """检查代理格式"""
+    """Check proxy format"""
     return True if IP_REGEX.fullmatch(proxy) else False
 
 
 @ProxyValidator.addHttpValidator
 def httpTimeOutValidator(proxy):
-    """ http检测超时 """
+    """ HTTP timeout check """
 
     proxies = {"http": "http://{proxy}".format(proxy=proxy), "https": "https://{proxy}".format(proxy=proxy)}
 
@@ -70,7 +70,7 @@ def httpTimeOutValidator(proxy):
 
 @ProxyValidator.addHttpsValidator
 def httpsTimeOutValidator(proxy):
-    """https检测超时"""
+    """HTTPS timeout check"""
 
     proxies = {"http": "http://{proxy}".format(proxy=proxy), "https": "https://{proxy}".format(proxy=proxy)}
     try:
@@ -82,5 +82,5 @@ def httpsTimeOutValidator(proxy):
 
 @ProxyValidator.addHttpValidator
 def customValidatorExample(proxy):
-    """自定义validator函数，校验代理是否可用, 返回True/False"""
+    """Custom validator function to check if proxy is available, returns True/False"""
     return True

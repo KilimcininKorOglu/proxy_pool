@@ -1,73 +1,72 @@
 .. how_to_run
 
 
-如何运行
----------
+How to Run
+-----------
 
-下载代码
->>>>>>>>>
+Download Code
+>>>>>>>>>>>>>>
 
-本项目需要下载代码到本地运行, 通过 ``git`` 下载:
+This project requires downloading the code to run locally, download via ``git``:
 
 .. code-block:: console
 
     $ git clone git@github.com:jhao104/proxy_pool.git
 
-或者下载特定的 ``release`` 版本:
+Or download a specific ``release`` version:
 
 .. code-block:: console
 
     https://github.com/jhao104/proxy_pool/releases
 
-安装依赖
->>>>>>>>>
+Install Dependencies
+>>>>>>>>>>>>>>>>>>>>>
 
-到项目目录下使用 ``pip`` 安装依赖库:
+Navigate to the project directory and use ``pip`` to install dependencies:
 
 .. code-block:: console
 
     $ pip install -r requirements.txt
 
 
-更新配置
->>>>>>>>>
+Update Configuration
+>>>>>>>>>>>>>>>>>>>>>
 
-配置文件 ``setting.py`` 位于项目的主目录下:
+The configuration file ``setting.py`` is located in the project's main directory:
 
 .. code-block:: python
 
-    # 配置API服务
+    # Configure API service
 
     HOST = "0.0.0.0"               # IP
-    PORT = 5000                    # 监听端口
+    PORT = 5000                    # Listen port
 
-    # 配置数据库
+    # Configure database
 
     DB_CONN = 'redis://@127.0.0.1:8888/0'
 
-    # 配置 ProxyFetcher
+    # Configure ProxyFetcher
 
     PROXY_FETCHER = [
-        "freeProxy01",      # 这里是启用的代理抓取方法，所有fetch方法位于fetcher/proxyFetcher.py
+        "freeProxy01",      # These are enabled proxy fetch methods, all fetch methods are in fetcher/proxyFetcher.py
         "freeProxy02",
         # ....
     ]
 
-更多配置请参考 :doc:`/user/how_to_config`
+For more configuration options, please refer to :doc:`/user/how_to_config`
 
-启动项目
->>>>>>>>>
+Start Project
+>>>>>>>>>>>>>>
 
-如果已配置好运行环境, 具备运行条件, 可以通过 ``proxyPool.py`` 启动.  ``proxyPool.py`` 是项目的CLI入口.
-完整程序包含两部份: ``schedule`` 调度程序和 ``server`` API服务, 调度程序负责采集和验证代理, API服务提供代理服务HTTP接口.
+If the runtime environment is configured and ready, you can start via ``proxyPool.py``. ``proxyPool.py`` is the project's CLI entry point.
+The complete program consists of two parts: ``schedule`` scheduler and ``server`` API service. The scheduler is responsible for fetching and validating proxies, while the API service provides HTTP interface for proxy services.
 
-通过命令行程序分别启动调度程序和API服务:
+Start the scheduler and API service separately via command line:
 
 .. code-block:: console
 
-    # 启动调度程序
+    # Start scheduler
     $ python proxyPool.py schedule
 
-    # 启动webApi服务
+    # Start webApi service
     $ python proxyPool.py server
-

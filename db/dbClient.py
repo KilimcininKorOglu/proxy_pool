@@ -3,13 +3,13 @@
 """
 -------------------------------------------------
    File Name：    DbClient.py
-   Description :  DB工厂类
+   Description :  DB factory class
    Author :       JHao
    date：          2016/12/2
 -------------------------------------------------
    Change Activity:
-                   2016/12/02:   DB工厂类
-                   2020/07/03:   取消raw_proxy储存
+                   2016/12/02:   DB factory class
+                   2020/07/03:   Removed raw_proxy storage
 -------------------------------------------------
 """
 __author__ = 'JHao'
@@ -25,23 +25,23 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 class DbClient(withMetaclass(Singleton)):
     """
-    DbClient DB工厂类 提供get/put/update/pop/delete/exists/getAll/clean/getCount/changeTable方法
+    DbClient DB factory class providing get/put/update/pop/delete/exists/getAll/clean/getCount/changeTable methods
 
 
-    抽象方法定义：
-        get(): 随机返回一个proxy;
-        put(proxy): 存入一个proxy;
-        pop(): 顺序返回并删除一个proxy;
-        update(proxy): 更新指定proxy信息;
-        delete(proxy): 删除指定proxy;
-        exists(proxy): 判断指定proxy是否存在;
-        getAll(): 返回所有代理;
-        clean(): 清除所有proxy信息;
-        getCount(): 返回proxy统计信息;
-        changeTable(name): 切换操作对象
+    Abstract method definitions:
+        get(): Randomly return a proxy;
+        put(proxy): Store a proxy;
+        pop(): Return and delete a proxy in order;
+        update(proxy): Update specified proxy information;
+        delete(proxy): Delete specified proxy;
+        exists(proxy): Check if specified proxy exists;
+        getAll(): Return all proxies;
+        clean(): Clear all proxy information;
+        getCount(): Return proxy statistics;
+        changeTable(name): Switch operation target
 
 
-        所有方法需要相应类去具体实现：
+        All methods need to be implemented by corresponding classes:
             ssdb: ssdbClient.py
             redis: redisClient.py
             mongodb: mongodbClient.py
